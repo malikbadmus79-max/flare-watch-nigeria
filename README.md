@@ -11,6 +11,8 @@ It includes a six-page Power BI dashboard. Every number on the dashboard is chec
 
 The project is descriptive: it reports estimated volumes and does not make claims about compliance, penalties, health effects or the conduct of any company.
 
+**Live map:** https://malikbadmus79-max.github.io/flare-watch-nigeria/map/ (every flare site, 2012–2025; screenshots: [desktop](figures/web_map_desktop.png), [mobile](figures/web_map_mobile.png))
+
 ![National page](figures/dashboard/page1_national.png)
 
 ## Key documents
@@ -88,7 +90,8 @@ python -m venv .venv
 .venv/Scripts/python src/flare_watch/phase0_check.py      # source register and checks
 .venv/Scripts/python src/flare_watch/phase2a.py           # cleaning, state/LGA assignment, population, Power BI tables
 .venv/Scripts/python src/flare_watch/phase2b.py           # validation incl. the independent recompute (validation/recompute.py)
-.venv/Scripts/python -m pytest -q                         # all 33 tests
+.venv/Scripts/python -m pytest -q                         # all 37 tests
+.venv/Scripts/python src/flare_watch/build_web_map.py     # regenerates map/index.html from data/processed/
 ```
 
 ### Power BI scripts (`powerbi/`)
@@ -112,7 +115,7 @@ The report pages are generated as PBIR JSON:
 - Independent recompute (DuckDB, shapely, pyproj): **68/68** pass.
 - Power BI measures vs Python: **340/340** pass.
 - Dashboard number audit: **138/138** pass. Wording audit: **0** safe-claim hits.
-- Automated tests: **33/33** pass with the raw files; 28 pass and 5 are skipped without them.
+- Automated tests: **37/37** pass with the raw files; 32 pass and 5 are skipped without them.
 
 ## Safe-claim statement
 
