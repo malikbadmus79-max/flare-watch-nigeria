@@ -1,0 +1,21 @@
+rank_recent_volume,site_id,field_as_recorded,operator_as_recorded,location_wb,match_key,gem_candidates,gem_unit_id,gem_unit_name,gem_status,gem_onshore_offshore,gem_location_accuracy,distance_km,flag_no_match,flag_status_not_operating,flag_distance_gt_10km,flag_no_gem_coordinates,flag_onshore_offshore_differs
+1,s_3930,Yoho,ExxonMobil,OFFSHORE,yoho,1,L100000311263,Yoho Oil and Gas Field (Nigeria),operating,offshore,exact,14.11,False,False,True,False,False
+2,s_3987,Oso,ExxonMobil,OFFSHORE,oso,1,L100000311204,Oso Oil and Gas Field (Nigeria),operating,offshore,exact,5.01,False,False,False,False,False
+3,s_3913,Okan,Chevron,OFFSHORE,okan,1,L100000311168,Okan Oil and Gas Field (Nigeria),operating,offshore,exact,4.48,False,False,False,False,False
+4,s_3938,Edop,ExxonMobil,OFFSHORE,edop,1,L100000311041,Edop Oil and Gas Field (Nigeria),operating,offshore,,,False,False,False,True,False
+5,s_3980a,Usan,ExxonMobil,OFFSHORE,usan,1,L100000311256,Usan Oil Field (Nigeria),operating,offshore,exact,7.18,False,False,False,False,False
+6,s_3926,Abo,Eni,OFFSHORE,abo,1,L100000310946,Abo Oil and Gas Field (Nigeria),operating,offshore,exact,6.03,False,False,False,False,False
+7,s_3971,Obiafu-Obrikom,Oando Oil,ONSHORE,obiafu-obrikom,0,,,,,,,True,False,False,False,False
+8,s_3909,Agu,Sterling Global,ONSHORE,agu,1,L100001061740,Agu Oil and Gas Field (Nigeria),in-development,onshore,,,False,True,False,True,False
+9,s_3991,Utapate,Sterling Global,OFFSHORE,utapate,1,L100001056199,Utapate Oil and Gas Field (Nigeria),operating,onshore,,,False,False,False,True,True
+10,s_3939,Opuama,NEPL,ONSHORE,opuama,1,L100000311191,Opuama Oil Field (Nigeria),operating,onshore,,,False,False,False,True,False
+11,s_3978,Oredo,NEPL,ONSHORE,oredo,1,L100000311195,Oredo Oil and Gas Field (Nigeria),mothballed,onshore,exact,1.36,False,True,False,False,False
+12,s_3941,Odidi,NEPL,ONSHORE,odidi,1,L100000311661,Odidi Oil and Gas Field (Nigeria),mothballed,onshore,exact,2.91,False,True,False,False,False
+13,s_4041a,Egbema West,NEPL,ONSHORE,egbema west,1,L100000311044,Egbema West Oil and Gas Field (Nigeria),operating,onshore,,,False,False,False,True,False
+14,s_3948,Oben,SEPLAT Energy,ONSHORE,oben,1,L100001056022,Oben Oil and Gas Field (Nigeria),in-development,onshore,,,False,True,False,True,False
+15,s_3914,Kwale,Oando Oil,ONSHORE,kwale,1,L100000311104,Kwale Oil and Gas Field (Nigeria),operating,onshore,exact,0.95,False,False,False,False,False
+16,s_3925,Sapele,SEPLAT Energy,ONSHORE,sapele,0,,,,,,,True,False,False,False,False
+17,s_3992,Okono,NEPL,OFFSHORE,okono,0,,,,,,,True,False,False,False,False
+18,s_3967,Unam,ExxonMobil,OFFSHORE,unam,1,L100000311252,Unam Oil and Gas Field (Nigeria),operating,offshore,exact,3.78,False,False,False,False,False
+19,s_3950,Erha,ExxonMobil,OFFSHORE,erha,0,,,,,,,True,False,False,False,False
+20,m_62,NLNG,Nigeria LNG,ONSHORE,nlng,0,,,,,,,True,False,False,False,False

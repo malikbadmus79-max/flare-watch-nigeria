@@ -1,0 +1,50 @@
+table dim_operator
+	lineageTag: fd318409-b9f1-4116-9d3a-038f4b260549
+
+	column operator_clean
+		dataType: string
+		lineageTag: fc635c53-5dc4-4cce-a4bb-684fd41f806d
+		summarizeBy: none
+		sourceColumn: operator_clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column operator_raw_variants
+		dataType: string
+		isHidden
+		lineageTag: 3883ddd4-7f5c-4b16-8fdc-982b9f73e19f
+		summarizeBy: none
+		sourceColumn: operator_raw_variants
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_unattributed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d925b29b-508a-4d14-9e81-7ad7a3dd809c
+		summarizeBy: none
+		sourceColumn: is_unattributed
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_sites
+		dataType: int64
+		formatString: 0
+		lineageTag: f6daf3ea-bd9c-4b43-8c7f-1f687c884830
+		summarizeBy: none
+		sourceColumn: n_sites
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_operator = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_operator.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"operator_clean", type text}, {"operator_raw_variants", type text}, {"is_unattributed", type logical}, {"n_sites", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

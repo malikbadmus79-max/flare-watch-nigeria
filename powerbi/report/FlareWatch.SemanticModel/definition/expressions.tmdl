@@ -1,0 +1,6 @@
+expression DataFolder = "C:\flare-watch-nigeria\data\processed\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 241abad1-8dd4-4ad7-9760-4910a67883d4
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text

@@ -1,0 +1,57 @@
+{
+  "name": "Flare Watch Nigeria",
+  "dataColors": ["#D9531E", "#2F5E8C", "#3D4148", "#E9A23B", "#2A8C82", "#8A4F7D", "#7A8B2E", "#B5A88F"],
+  "background": "#FFFFFF",
+  "foreground": "#1B1D22",
+  "tableAccent": "#D9531E",
+  "good": "#2A8C82",
+  "neutral": "#B5A88F",
+  "bad": "#D9531E",
+  "maximum": "#9E3A12",
+  "center": "#F2C6A8",
+  "minimum": "#FBEDE3",
+  "textClasses": {
+    "title":   { "fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#1B1D22" },
+    "header":  { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1B1D22" },
+    "label":   { "fontFace": "Segoe UI", "fontSize": 10, "color": "#5C5F66" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#1B1D22" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E6E0D3" } }, "radius": 8 }],
+        "dropShadow": [{ "show": false }],
+        "padding": [{ "top": 12, "bottom": 12, "left": 14, "right": 14 }],
+        "title": [{ "show": true, "fontFamily": "Segoe UI Semibold", "fontSize": 12, "fontColor": { "solid": { "color": "#1B1D22" } }, "alignment": "left" }],
+        "valueAxis": [{ "gridlineColor": { "solid": { "color": "#EEEAE1" } }, "gridlineStyle": "solid", "labelColor": { "solid": { "color": "#6F6B62" } }, "fontSize": 9 }],
+        "categoryAxis": [{ "labelColor": { "solid": { "color": "#6F6B62" } }, "fontSize": 9, "showAxisTitle": false }],
+        "legend": [{ "position": "Top", "fontSize": 9, "labelColor": { "solid": { "color": "#5C5F66" } } }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F6F3EC" } }, "transparency": 0 }],
+        "outspace": [{ "color": { "solid": { "color": "#F6F3EC" } } }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#1B1D22" } }, "fontSize": 26, "fontFamily": "Segoe UI Semibold" }],
+        "categoryLabels": [{ "show": true, "color": { "solid": { "color": "#5C5F66" } }, "fontSize": 10 }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "header": [{ "fontColor": { "solid": { "color": "#5C5F66" } }, "textSize": 9 }],
+        "items": [{ "fontColor": { "solid": { "color": "#1B1D22" } }, "textSize": 10 }]
+      }
+    },
+    "textbox": {
+      "*": {
+        "background": [{ "show": false }],
+        "border": [{ "show": false }]
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# raw source data is not redistributed (see README, "Data you must download yourself")
+data/raw/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Power BI
+*.pbix
+powerbi/report/**/.pbi/localSettings.json
+powerbi/report/**/.pbi/cache.abf
+powerbi/pbir_staging/
+powerbi/backup/
+
+# caches built from raw data
+*.parquet
+
+# local tool configuration
+.mcp.json

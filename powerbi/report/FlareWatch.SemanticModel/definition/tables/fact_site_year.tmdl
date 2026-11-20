@@ -1,0 +1,71 @@
+table fact_site_year
+	lineageTag: de886380-9b6f-418b-92b4-a12af16a25cf
+
+	column site_id
+		dataType: string
+		lineageTag: 9e90f416-d317-41fc-b800-a3ea8c1b03d2
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 15f7c4ad-5b66-4820-b074-61512985688f
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column bcm
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 972a55e1-cd31-43a5-9eb8-98d45630ff06
+		summarizeBy: sum
+		sourceColumn: bcm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mmscfd
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 1c68b2a5-0344-4358-b0ff-584762261ca0
+		summarizeBy: sum
+		sourceColumn: mmscfd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column flare_level
+		dataType: string
+		lineageTag: a3efb8d8-104d-4fa9-b812-1e02b1bfc3db
+		summarizeBy: none
+		sourceColumn: flare_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2ddea88c-ad19-4c29-af58-a6bdcaaf8764
+		summarizeBy: none
+		sourceColumn: active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_site_year = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_site_year.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"site_id", type text}, {"year", Int64.Type}, {"bcm", type number}, {"mmscfd", type number}, {"flare_level", type text}, {"active", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

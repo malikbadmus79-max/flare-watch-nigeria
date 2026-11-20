@@ -1,0 +1,41 @@
+{
+  "name": "Flare Watch Nigeria (Night)",
+  "dataColors": ["#FF7A1A", "#5AB0F0", "#8B95A3", "#9C4519", "#FFB27A", "#3FB8AF", "#B07CC6", "#C9A227"],
+  "background": "#151B23",
+  "foreground": "#E8EAED",
+  "tableAccent": "#FF7A1A",
+  "good": "#3FB8AF",
+  "neutral": "#8B95A3",
+  "bad": "#FF7A1A",
+  "maximum": "#FF7A1A",
+  "center": "#9C4519",
+  "minimum": "#2A1A12",
+  "textClasses": {
+    "title":   { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#E8EAED" },
+    "header":  { "fontFace": "Segoe UI Semibold", "fontSize": 11, "color": "#E8EAED" },
+    "label":   { "fontFace": "Segoe UI", "fontSize": 9, "color": "#8B95A3" },
+    "callout": { "fontFace": "Segoe UI Bold", "fontSize": 30, "color": "#E8EAED" }
+  },
+  "visualStyles": {
+    "*": { "*": {
+      "background": [{ "show": true, "color": { "solid": { "color": "#151B23" } }, "transparency": 0 }],
+      "border": [{ "show": true, "color": { "solid": { "color": "#232B36" } }, "radius": 12 }],
+      "dropShadow": [{ "show": false }],
+      "title": [{ "show": true, "fontFamily": "Segoe UI Semibold", "fontSize": 12, "fontColor": { "solid": { "color": "#E8EAED" } }, "alignment": "left" }],
+      "subTitle": [{ "fontColor": { "solid": { "color": "#8B95A3" } }, "fontSize": 9 }],
+      "valueAxis": [{ "gridlineColor": { "solid": { "color": "#222A35" } }, "labelColor": { "solid": { "color": "#6B7685" } }, "fontSize": 9, "showAxisTitle": false }],
+      "categoryAxis": [{ "labelColor": { "solid": { "color": "#6B7685" } }, "fontSize": 9, "showAxisTitle": false }],
+      "legend": [{ "position": "TopRight", "fontSize": 9, "labelColor": { "solid": { "color": "#8B95A3" } } }],
+      "labels": [{ "color": { "solid": { "color": "#FFB27A" } }, "fontSize": 9 }]
+    } },
+    "page": { "*": {
+      "background": [{ "color": { "solid": { "color": "#0D1117" } }, "transparency": 0 }],
+      "outspace": [{ "color": { "solid": { "color": "#0D1117" } } }]
+    } },
+    "textbox": { "*": { "background": [{ "show": false }], "border": [{ "show": false }] } },
+    "slicer": { "*": {
+      "items": [{ "fontColor": { "solid": { "color": "#E8EAED" } }, "background": { "solid": { "color": "#151B23" } } }],
+      "header": [{ "fontColor": { "solid": { "color": "#8B95A3" } } }]
+    } }
+  }
+}

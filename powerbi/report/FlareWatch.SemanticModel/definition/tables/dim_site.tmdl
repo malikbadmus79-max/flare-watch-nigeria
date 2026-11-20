@@ -1,0 +1,236 @@
+table dim_site
+	lineageTag: b24c7ea4-cf69-4b81-8afa-a3e155ff05d4
+
+	column site_id
+		dataType: string
+		lineageTag: 1ed0d89a-1243-4ba5-a637-d1a282b21c83
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		formatString: 0.0000
+		lineageTag: c18a545a-3431-4ef2-9837-46e826741b38
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		formatString: 0.0000
+		lineageTag: b390c366-77fd-4034-9389-0e02e37960e2
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column field
+		dataType: string
+		lineageTag: 798cfe76-eb2e-4ab5-9a3b-8c7372a71ad5
+		summarizeBy: none
+		sourceColumn: field
+
+		annotation SummarizationSetBy = Automatic
+
+	column operator_clean
+		dataType: string
+		lineageTag: 5e1c2e48-e541-4afa-beae-cdc36cf7ee5a
+		summarizeBy: none
+		sourceColumn: operator_clean
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_type
+		dataType: string
+		lineageTag: 53991e12-e18f-4d15-a7eb-173bde2f17fb
+		summarizeBy: none
+		sourceColumn: field_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 9883b0a5-85c2-4e92-88d4-aaf9bf5a7a32
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: b7ca0f6c-cfdb-4725-ae99-7857aab45ef5
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column lga
+		dataType: string
+		lineageTag: 0edda093-e78a-4d44-a0a2-e641d66bfa46
+		summarizeBy: none
+		sourceColumn: lga
+
+		annotation SummarizationSetBy = Automatic
+
+	column pop_2km
+		dataType: double
+		formatString: #,##0
+		lineageTag: d831a8e1-8cde-4624-8219-c1f05713245a
+		summarizeBy: none
+		sourceColumn: pop_2km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pop_5km
+		dataType: double
+		formatString: #,##0
+		lineageTag: 43858183-37ff-4405-b628-7d8a62d4d8c8
+		summarizeBy: none
+		sourceColumn: pop_5km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column persistent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f0ccd3b9-310e-484c-a745-10c059fc83d1
+		summarizeBy: none
+		sourceColumn: persistent
+
+		annotation SummarizationSetBy = Automatic
+
+	column persistent_10
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6ce70db4-8674-4b99-a8c8-a055a15fcaed
+		summarizeBy: none
+		sourceColumn: persistent_10
+
+		annotation SummarizationSetBy = Automatic
+
+	column persistent_14
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7e2048ca-9f8c-4788-85e3-b49b5f383b4f
+		summarizeBy: none
+		sourceColumn: persistent_14
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_years
+		dataType: int64
+		formatString: 0
+		lineageTag: b0fd9cbf-4c1a-431a-ad53-02ff7023d390
+		summarizeBy: none
+		sourceColumn: active_years
+
+		annotation SummarizationSetBy = Automatic
+
+	column recent_volume_bcm
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 083fde55-bec9-4721-876d-7facca92bca0
+		summarizeBy: none
+		sourceColumn: recent_volume_bcm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column active_2025
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 17409cca-eac7-4b1c-b2f2-516b8fbd7f32
+		summarizeBy: none
+		sourceColumn: active_2025
+
+		annotation SummarizationSetBy = Automatic
+
+	column operator_raw
+		dataType: string
+		isHidden
+		lineageTag: d623ff40-b55e-4736-9a24-728280ca9e2b
+		summarizeBy: none
+		sourceColumn: operator_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_raw
+		dataType: string
+		isHidden
+		lineageTag: 34928fb5-d040-4769-a588-c9945fe7303c
+		summarizeBy: none
+		sourceColumn: field_raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_iso
+		dataType: string
+		isHidden
+		lineageTag: 99866e74-53a5-4ac1-b3b9-d668a33facee
+		summarizeBy: none
+		sourceColumn: state_iso
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_id
+		dataType: string
+		isHidden
+		lineageTag: 2ed6849e-45ed-4a5e-a0de-b06062c4498d
+		summarizeBy: none
+		sourceColumn: state_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_method
+		dataType: string
+		isHidden
+		lineageTag: 541f7b75-181a-483e-8673-a4b99a108155
+		summarizeBy: none
+		sourceColumn: state_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column lga_id
+		dataType: string
+		isHidden
+		lineageTag: 7a526b56-fafd-4491-9297-3913e638123a
+		summarizeBy: none
+		sourceColumn: lga_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column lga_method
+		dataType: string
+		isHidden
+		lineageTag: 1ef3bd18-5922-405b-8d02-298b56b52cb7
+		summarizeBy: none
+		sourceColumn: lga_method
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_site = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_site.csv"),[Delimiter=",", Columns=24, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"site_id", type text}, {"lat", type number}, {"lon", type number}, {"field", type text}, {"operator_clean", type text}, {"field_type", type text}, {"location", type text}, {"state", type text}, {"lga", type text}, {"pop_2km", type number}, {"pop_5km", type number}, {"persistent", type logical}, {"persistent_10", type logical}, {"persistent_14", type logical}, {"active_years", Int64.Type}, {"recent_volume_bcm", type number}, {"active_2025", type logical}, {"operator_raw", type text}, {"field_raw", type text}, {"state_iso", type text}, {"state_id", type text}, {"state_method", type text}, {"lga_id", type text}, {"lga_method", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

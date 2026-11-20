@@ -1,0 +1,133 @@
+{
+  "sources_phase2": [
+    {
+      "file": "worldpop/nga_pop_2025_CN_100m_R2025A_v1.tif",
+      "size_bytes": 157014323,
+      "sha256": "abc7e897aff7de024d851a24613eebf28e710dbfe4dea9c3e02ee285d75d4f8b"
+    },
+    {
+      "file": "boundaries/geoBoundaries-NGA-ADM1.geojson",
+      "size_bytes": 2289696,
+      "sha256": "64fa218ac3d453cc1e66412ff461c5dfa1a4a1ade0da93b239a9891b587d28f9"
+    },
+    {
+      "file": "boundaries/geoBoundaries-NGA-ADM2.geojson",
+      "size_bytes": 9422551,
+      "sha256": "bef7f2cfa45e012f4772eaa61c7b99e5188aeba4d5c6badae7e9f9aae8c02fcd"
+    },
+    {
+      "file": "docs/SoGF.pdf",
+      "size_bytes": 2718768,
+      "sha256": "5d507aa58f0ad8032a09d9d47f88f6795e66a8975999f421f9244bbc093d11f8"
+    },
+    {
+      "file": "docs/FLARE-GAS-PREVENTION-OF-WASTE-AND-POLLUTION-REGULATIONS-2018.pdf",
+      "size_bytes": 1006643,
+      "sha256": "ca2c829586b1f10369bf9835a1bf155118505aeec27c8a00b49835188cf2cb69"
+    }
+  ],
+  "counts": {
+    "fact_rows": 6664,
+    "sites": 476,
+    "persistent_10": 218,
+    "persistent_12": 171,
+    "persistent_14": 133,
+    "active_2025": 259,
+    "sites_by_state": {
+      "Abia": 8,
+      "Akwa Ibom": 3,
+      "Bayelsa": 38,
+      "Delta": 116,
+      "Edo": 10,
+      "Imo": 26,
+      "Kaduna": 1,
+      "Offshore": 103,
+      "Ondo": 1,
+      "Rivers": 170
+    },
+    "lga_unassigned_onshore": 0,
+    "distinct_lgas_with_sites": 47,
+    "operators_clean": 40,
+    "fields_clean": 171
+  },
+  "admin_assignment": {
+    "offshore_sites": 103,
+    "onshore_sites": 373,
+    "state": {
+      "points": 373,
+      "within": 373,
+      "nearest_within_2km": 0,
+      "unassigned": 0,
+      "points_on_shared_boundary": 0
+    },
+    "lga": {
+      "points": 373,
+      "within": 373,
+      "nearest_within_2km": 0,
+      "unassigned": 0,
+      "points_on_shared_boundary": 0
+    },
+    "lga_state_mismatch": 0,
+    "offshore_sites_inside_adm1_polygon": 33
+  },
+  "operator_cleaning": [
+    {
+      "column": "Operator",
+      "raw_value": "<missing>",
+      "clean_value": "Unattributed",
+      "rule": "missing -> Unattributed (plan Q1)",
+      "n_sites": 57,
+      "n_rows": 798
+    },
+    {
+      "column": "Operator",
+      "raw_value": "Renaissance Africa Energy ",
+      "clean_value": "Renaissance Africa Energy",
+      "rule": "trim leading/trailing spaces (plan Q2)",
+      "n_sites": 75,
+      "n_rows": 1050
+    }
+  ],
+  "field_cleaning": [
+    {
+      "column": "Field name",
+      "raw_value": "<missing>",
+      "clean_value": "Unattributed field",
+      "rule": "missing -> Unattributed field (plan Q1)",
+      "n_sites": 57,
+      "n_rows": 798
+    },
+    {
+      "column": "Field name",
+      "raw_value": "*",
+      "clean_value": "Unattributed field",
+      "rule": "'*' -> Unattributed field (plan Q10)",
+      "n_sites": 1,
+      "n_rows": 14
+    },
+    {
+      "column": "Field type",
+      "raw_value": "<missing>",
+      "clean_value": "Unattributed",
+      "rule": "missing -> Unattributed (plan Q1)",
+      "n_sites": 57,
+      "n_rows": 798
+    }
+  ],
+  "population_method": {
+    "raster": "nga_pop_2025_CN_100m_R2025A_v1.tif",
+    "raster_crs": "EPSG:4326",
+    "pixel_deg": [
+      0.00083333333,
+      0.00083333333
+    ],
+    "nodata": -99999.0,
+    "pixel_rule": "pixel centre inside buffer (all_touched=False)",
+    "buffer_crs": "EPSG:32632",
+    "buffer_segments_per_quarter": 32
+  },
+  "population_sites_zero": {
+    "pop_2km": 67,
+    "pop_5km": 63
+  }
+}

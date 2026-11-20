@@ -1,0 +1,16 @@
+{
+  "site_id": "s_38320",
+  "lat": 10.1409163,
+  "lon": 7.18872893,
+  "state": "Kaduna",
+  "lga": "Chikun",
+  "operator_as_recorded": "Pan Ocean Oil",
+  "field_as_recorded": "Obi Ayima",
+  "field_type": "OIL",
+  "location": "ONSHORE",
+  "years_active": [
+    2025
+  ],
+  "other_sites_with_same_field": "s_3891 (Delta, 6.0426, 6.2762; 467 km from s_38320)",
+  "gem_match_for_field_name": "none"
+}

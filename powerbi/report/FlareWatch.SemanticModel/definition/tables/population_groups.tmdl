@@ -1,0 +1,71 @@
+table population_groups
+	lineageTag: d84120fd-60c5-44f2-a1e7-ed87ab34a2a4
+
+	column group
+		dataType: string
+		lineageTag: 04dcf2d6-1dea-474e-919d-ade9d874b9a0
+		summarizeBy: none
+		sourceColumn: group
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: c754713e-c2dd-4540-a612-52b4458bfe65
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column buffer_km
+		dataType: int64
+		formatString: 0
+		lineageTag: 854d2b9b-1c16-43b7-b3fd-5d367ee7e0fd
+		summarizeBy: none
+		sourceColumn: buffer_km
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_sites
+		dataType: int64
+		formatString: 0
+		lineageTag: 40f5bb8b-55f2-4bab-85d9-fcf809cd8999
+		summarizeBy: none
+		sourceColumn: n_sites
+
+		annotation SummarizationSetBy = Automatic
+
+	column pop_union
+		dataType: double
+		formatString: #,##0
+		lineageTag: 134f6a98-1225-4c2e-a0e6-650ce0b884e0
+		summarizeBy: none
+		sourceColumn: pop_union
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pop_sum_of_sites
+		dataType: double
+		formatString: #,##0
+		lineageTag: af921ed4-69b3-46b6-a44c-9f88e72f9ada
+		summarizeBy: none
+		sourceColumn: pop_sum_of_sites
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition population_groups = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "population_groups.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"group", type text}, {"state", type text}, {"buffer_km", Int64.Type}, {"n_sites", Int64.Type}, {"pop_union", type number}, {"pop_sum_of_sites", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

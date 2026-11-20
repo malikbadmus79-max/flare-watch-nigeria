@@ -1,0 +1,139 @@
+page,visual,item,source,dax,python,shown,abs_diff,tolerance,pass
+National,card Gas flared,6.60 bcm,Flare Volume Selected Year (bcm),6.60080617732163,6.60080617732163,6.60,0.0,0.001,True
+National,card Gas flared,+8.0% vs previous year,YoY Change Selected Year (%),0.08028604982393278,0.08028604982393293,▲ 8.0%,1.5265566588595902e-16,1e-06,True
+National,card Implied emissions,17.0 Mt CO2e,CO2e Selected Year (Mt),16.957471069539267,16.957471069539267,17.0,0.0,0.001,True
+National,card Active flare sites,259,Active Sites Selected Year,259.0,259,259,0.0,0.0,True
+National,card Active flare sites,of 476 (text),COUNTROWS(dim_site),476.0,476,476,0.0,0.0,True
+National,card Active flare sites,381 at the 2021 peak (text),"Active Sites, 2021",381.0,381,381,0.0,0.0,True
+National,card Active flare sites,peak year 2021 (text),year of max Active Sites,2021,2021,2021,0.0,0.0,True
+National,card Persistent sites,171,Persistent Sites (12 of 14),171.0,171,171,0.0,0.0,True
+National,card Persistent sites,≥12 of 14 years (text),param persistent_min_years,12.0,12.0,12,0.0,0.0,True
+National,map subtitle,476 recorded flare sites (text),COUNTROWS(dim_site),476.0,476,476,0.0,0.0,True
+National,map legend,Outside view: 5 sites (text),"dim_site outside lon 4.2-8.7, lat 3.35-6.8",5.0,5,5,0.0,0.0,True
+National,map legend,1 inland (text),outside-view sites with location ONSHORE,1.0,1,1,0.0,0.0,True
+National,map legend,4 offshore (text),outside-view sites with location OFFSHORE,4.0,4,4,0.0,0.0,True
+National,Top 6 states,same 6 states (set),TOPN 6 dim_state by Flare Volume Selected Year,"Bayelsa,Delta,Edo,Imo,Offshore,Rivers","Bayelsa,Delta,Edo,Imo,Offshore,Rivers",,,,True
+National,Top 6 states,label Offshore,Flare Volume Selected Year (bcm),2.5658802377365113,2.5658802377365104,2.57,8.881784197001252e-16,0.001,True
+National,Top 6 states,label Delta,Flare Volume Selected Year (bcm),1.2941312828589466,1.2941312828589473,1.29,6.661338147750939e-16,0.001,True
+National,Top 6 states,label Rivers,Flare Volume Selected Year (bcm),1.2715850295199158,1.2715850295199158,1.27,0.0,0.001,True
+National,Top 6 states,label Imo,Flare Volume Selected Year (bcm),0.6713842827019905,0.6713842827019904,0.67,1.1102230246251565e-16,0.001,True
+National,Top 6 states,label Bayelsa,Flare Volume Selected Year (bcm),0.43971988468686163,0.43971988468686163,0.44,0.0,0.001,True
+National,Top 6 states,label Edo,Flare Volume Selected Year (bcm),0.32924480780348675,0.3292448078034867,0.33,5.551115123125783e-17,0.001,True
+National,Active flare sites chart,label 2021,Active Sites Label Points,381.0,381,381,0.0,0.0,True
+National,Active flare sites chart,label 2025,Active Sites Label Points,259.0,259,259,0.0,0.0,True
+Sites,page subtitle,all 476 recorded flare sites (text),COUNTROWS(dim_site),476.0,476,476,0.0,0.0,True
+Sites,All sites table,rows,dim_site,476,476,476 rows,0.0,0.0,True
+Sites,All sites table,column ay (Active years): rows not matching,dim_site[active_years],0,0,476 rows,0.0,0.0,True
+Sites,All sites table,column rv (Recent bcm): rows not matching,dim_site[recent_volume_bcm],0,0,476 rows,0.0,0.0,True
+Sites,All sites table,column sy (Selected-year bcm): rows not matching,Flare Volume Selected Year (bcm),0,0,476 rows,0.0,0.0,True
+Sites,All sites table,column Persistent: rows not matching,dim_site[persistent],0,0,476 rows,0.0,0.0,True
+Sites,Top 10 persistent by recent volume,same 10 sites (set),TOPN 10 by Recent Volume (bcm),"s_3913,s_3926,s_3930,s_3938,s_3939,s_3941,s_3971,s_3978,s_3980a,s_3987","s_3913,s_3926,s_3930,s_3938,s_3939,s_3941,s_3971,s_3978,s_3980a,s_3987",,,,True
+Sites,Top 10 persistent by recent volume,s_3930,Recent Volume (bcm),0.27550257691804797,0.27550257691804797,0.28,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3987,Recent Volume (bcm),0.26789688371146664,0.26789688371146664,0.27,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3913,Recent Volume (bcm),0.17773916700424933,0.17773916700424933,0.18,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3938,Recent Volume (bcm),0.17355775819293603,0.17355775819293603,0.17,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3980a,Recent Volume (bcm),0.170721509914348,0.17072150991434798,0.17,2.7755575615628914e-17,0.001,True
+Sites,Top 10 persistent by recent volume,s_3926,Recent Volume (bcm),0.164584077096644,0.164584077096644,0.16,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3971,Recent Volume (bcm),0.14833758330246036,0.14833758330246033,0.15,2.7755575615628914e-17,0.001,True
+Sites,Top 10 persistent by recent volume,s_3939,Recent Volume (bcm),0.12436872584623615,0.12436872584623615,0.12,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3978,Recent Volume (bcm),0.12356687468898574,0.12356687468898574,0.12,0.0,0.001,True
+Sites,Top 10 persistent by recent volume,s_3941,Recent Volume (bcm),0.11305450675323092,0.11305450675323092,0.11,0.0,0.001,True
+Operators,card Top 10 operators' share,83.3%,Top 10 Operators Share,0.8326417173095426,0.8326417173095427,83.3%,1.1102230246251565e-16,1e-06,True
+Operators,card Unattributed volume,0.05 bcm,Unattributed Volume (bcm),0.05265928684295205,0.052659286842952055,0.05,6.938893903907228e-18,0.001,True
+Operators,Unattributed bar,label,"Flare Volume Selected Year (bcm), Unattributed",0.05265928684295205,0.052659286842952055,0.05,6.938893903907228e-18,0.001,True
+Operators,Top 12 operators,same 12 operators (set),TOPN 12,"Chevron,Eni,ExxonMobil,Heirs Energies,NEPL,NNPC Limited,Nigeria LNG,Oando Oil,Renaissance Africa Energy,SEPLAT Energy,Sterling Global,TotalEnergies","Chevron,Eni,ExxonMobil,Heirs Energies,NEPL,NNPC Limited,Nigeria LNG,Oando Oil,Renaissance Africa Energy,SEPLAT Energy,Sterling Global,TotalEnergies",,,,True
+Operators,Top 12 operators,label NEPL,Flare Volume Selected Year (bcm),1.510564231210971,1.5105642312109708,1.51,2.220446049250313e-16,0.001,True
+Operators,Top 12 operators,label ExxonMobil,Flare Volume Selected Year (bcm),1.0281696487211371,1.0281696487211371,1.03,0.0,0.001,True
+Operators,Top 12 operators,label Oando Oil,Flare Volume Selected Year (bcm),0.5462860492293043,0.5462860492293045,0.55,1.1102230246251565e-16,0.001,True
+Operators,Top 12 operators,label NNPC Limited,Flare Volume Selected Year (bcm),0.5045748747130365,0.5045748747130365,0.50,0.0,0.001,True
+Operators,Top 12 operators,label Sterling Global,Flare Volume Selected Year (bcm),0.48661614475500314,0.4866161447550032,0.49,5.551115123125783e-17,0.001,True
+Operators,Top 12 operators,label Renaissance Africa Energy,Flare Volume Selected Year (bcm),0.4859151848554955,0.48591518485549556,0.49,5.551115123125783e-17,0.001,True
+Operators,Top 12 operators,label Chevron,Flare Volume Selected Year (bcm),0.2762241286205083,0.2762241286205084,0.28,5.551115123125783e-17,0.001,True
+Operators,Top 12 operators,label Nigeria LNG,Flare Volume Selected Year (bcm),0.2672557564655382,0.2672557564655382,0.27,0.0,0.001,True
+Operators,Top 12 operators,label Heirs Energies,Flare Volume Selected Year (bcm),0.20730284906563728,0.2073028490656373,0.21,2.7755575615628914e-17,0.001,True
+Operators,Top 12 operators,label SEPLAT Energy,Flare Volume Selected Year (bcm),0.1831977234758879,0.18319772347588786,0.18,2.7755575615628914e-17,0.001,True
+Operators,Top 12 operators,label TotalEnergies,Flare Volume Selected Year (bcm),0.16699457969644574,0.16699457969644574,0.17,0.0,0.001,True
+Operators,Top 12 operators,label Eni,Flare Volume Selected Year (bcm),0.134670792438028,0.134670792438028,0.13,0.0,0.001,True
+Operators,Top 10 fields,same 10 fields (set),TOPN 10,"Agu,Cawthorne Channel,Edop,Egbema West,NLNG,Obiafu-Obrikom,Odidi,Oso,Usan,Utapate","Agu,Cawthorne Channel,Edop,Egbema West,NLNG,Obiafu-Obrikom,Odidi,Oso,Usan,Utapate",,,,True
+Operators,Top 10 fields,label Egbema West,Flare Volume Selected Year (bcm),0.36985323429843026,0.3698532342984303,0.37,5.551115123125783e-17,0.001,True
+Operators,Top 10 fields,label Oso,Flare Volume Selected Year (bcm),0.3099130719067487,0.3099130719067487,0.31,0.0,0.001,True
+Operators,Top 10 fields,label NLNG,Flare Volume Selected Year (bcm),0.2672557564655382,0.2672557564655382,0.27,0.0,0.001,True
+Operators,Top 10 fields,label Utapate,Flare Volume Selected Year (bcm),0.261480436783475,0.261480436783475,0.26,0.0,0.001,True
+Operators,Top 10 fields,label Cawthorne Channel,Flare Volume Selected Year (bcm),0.22154690735753513,0.2215469073575351,0.22,2.7755575615628914e-17,0.001,True
+Operators,Top 10 fields,label Odidi,Flare Volume Selected Year (bcm),0.212411705515806,0.212411705515806,0.21,0.0,0.001,True
+Operators,Top 10 fields,label Usan,Flare Volume Selected Year (bcm),0.2102909446140071,0.2102909446140071,0.21,0.0,0.001,True
+Operators,Top 10 fields,label Edop,Flare Volume Selected Year (bcm),0.190067515223661,0.190067515223661,0.19,0.0,0.001,True
+Operators,Top 10 fields,label Obiafu-Obrikom,Flare Volume Selected Year (bcm),0.186189776562011,0.186189776562011,0.19,0.0,0.001,True
+Operators,Top 10 fields,label Agu,Flare Volume Selected Year (bcm),0.179547077201007,0.179547077201007,0.18,0.0,0.001,True
+Operators,Top 5 operators trend,legend: same 5 operators (set),TOPN 5 by Flare Volume 2012-2025,"Chevron,ExxonMobil,NEPL,NNPC Limited,Oando Oil","Chevron,ExxonMobil,NEPL,NNPC Limited,Oando Oil",,,,True
+Cost,card Implied emissions,17.0 Mt CO2e,CO2e Selected Year (Mt),16.957471069539267,16.957471069539267,17.0,0.0,0.001,True
+Cost,card Gross value,Gas Value Low (USD),Gas Value Low (USD),506444514.12895167,506444514.12895167,$506M,0.0,1.0,True
+Cost,card Gross value,Gas Value Central (USD),Gas Value Central (USD),836941168.8891597,836941168.8891597,$837M,0.0,1.0,True
+Cost,card Gross value,Gas Value High (USD),Gas Value High (USD),3186082858.8394146,3186082858.8394146,"$3,186M",0.0,1.0,True
+Cost,card Implied flare fee,Implied Flare Fee Low (USD),Implied Flare Fee Low (USD),116552636.04182816,116552636.04182816,$117M,0.0,1.0,True
+Cost,card Implied flare fee,Implied Flare Fee High (USD),Implied Flare Fee High (USD),466210544.1673126,466210544.1673126,$466M,0.0,1.0,True
+Cost,card Implied flare fee,$0.50/Mscf (text),param flare_fee_low_usd_per_mscf,0.5,0.5,$0.50,0.0,1e-09,True
+Cost,card Implied flare fee,$2.00/Mscf (text),param flare_fee_high_usd_per_mscf,2.0,2.0,$2.00,0.0,1e-09,True
+Cost,Assumptions table,bcm_to_million_m3,param_assumptions[value],1000.0,1000.0,,0.0,1e-09,True
+Cost,Assumptions table,m3_to_ft3,param_assumptions[value],35.3146667,35.3146667,,0.0,1e-09,True
+Cost,Assumptions table,bcm_to_bcf,param_assumptions[value],35.3147,35.3147,,0.0,1e-09,True
+Cost,Assumptions table,bcm_to_mscf,param_assumptions[value],35314667.0,35314667.0,,0.0,1e-09,True
+Cost,Assumptions table,mmscf_to_m3,param_assumptions[value],28316.8466,28316.8466,,0.0,1e-09,True
+Cost,Assumptions table,hhv_btu_per_scf,param_assumptions[value],1020.0,1020.0,,0.0,1e-09,True
+Cost,Assumptions table,co2e_mt_per_bcm,param_assumptions[value],2.569,2.569,,0.0,1e-09,True
+Cost,Assumptions table,flare_fee_low_usd_per_mscf,param_assumptions[value],0.5,0.5,,0.0,1e-09,True
+Cost,Assumptions table,flare_fee_high_usd_per_mscf,param_assumptions[value],2.0,2.0,,0.0,1e-09,True
+Cost,Assumptions table,price_low_usd_per_mmbtu,param_assumptions[value],2.13,2.13,,0.0,1e-09,True
+Cost,Assumptions table,price_central_usd_per_mmbtu,param_assumptions[value],3.52,3.52,,0.0,1e-09,True
+Cost,Assumptions table,price_high_usd_per_mmbtu,param_assumptions[value],13.4,13.4,,0.0,1e-09,True
+Cost,Assumptions table,persistent_min_years,param_assumptions[value],12.0,12.0,,0.0,1e-09,True
+Cost,Assumptions table,persistent_sensitivity_low,param_assumptions[value],10.0,10.0,,0.0,1e-09,True
+Cost,Assumptions table,persistent_sensitivity_high,param_assumptions[value],14.0,14.0,,0.0,1e-09,True
+People,card 1,active_2025 2 km,Residents within 2 km (group active_2025),1166927.9046368664,1166927.9046368664,"1,166,928",0.0,1.0,True
+People,card 2,active_2025 5 km,Residents within 5 km (group active_2025),5061850.025736713,5061850.025736713,"5,061,850",0.0,1.0,True
+People,card 3,persistent 2 km,Residents within 2 km (group persistent),988745.4468232812,988745.4468232812,"988,745",0.0,1.0,True
+People,card 4,persistent 5 km,Residents within 5 km (group persistent),4116773.852344555,4116773.852344555,"4,116,774",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Abia,Residents within 5 km of persistent sites,69417.38762007281,69417.38762007281,"69,417",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Akwa Ibom,Residents within 5 km of persistent sites,33896.02659936063,33896.02659936063,"33,896",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Bayelsa,Residents within 5 km of persistent sites,448001.81873559207,448001.81873559207,"448,002",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Delta,Residents within 5 km of persistent sites,1327930.852769374,1327930.852769374,"1,327,931",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Edo,Residents within 5 km of persistent sites,21156.018257059157,21156.018257059157,"21,156",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Imo,Residents within 5 km of persistent sites,45723.948708832264,45723.948708832264,"45,724",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Offshore,Residents within 5 km of persistent sites,239451.93155922368,239451.93155922368,"239,452",0.0,1.0,True
+People,"Residents by state (persistent, 5 km)",label Rivers,Residents within 5 km of persistent sites,2216734.629874591,2216734.629874591,"2,216,735",0.0,1.0,True
+People,Top 10 persistent by residents,same 10 sites (set),TOPN 10,"m_62,s_3621,s_3643,s_3664,s_3731,s_3747,s_3749,s_3788,s_3792,s_3806","m_62,s_3621,s_3643,s_3664,s_3731,s_3747,s_3749,s_3788,s_3792,s_3806",,,,True
+People,Top 10 persistent by residents,s_3788,Residents within 5 km (per site),572037.9219367728,572037.9219367728,"572,038",0.0,1.0,True
+People,Top 10 persistent by residents,s_3792,Residents within 5 km (per site),508195.4241991341,508195.4241991341,"508,195",0.0,1.0,True
+People,Top 10 persistent by residents,s_3806,Residents within 5 km (per site),383160.48451563716,383160.48451563716,"383,160",0.0,1.0,True
+People,Top 10 persistent by residents,s_3664,Residents within 5 km (per site),272726.85272499174,272726.85272499174,"272,727",0.0,1.0,True
+People,Top 10 persistent by residents,s_3621,Residents within 5 km (per site),254795.2267955467,254795.2267955467,"254,795",0.0,1.0,True
+People,Top 10 persistent by residents,s_3747,Residents within 5 km (per site),243066.1558970809,243066.1558970809,"243,066",0.0,1.0,True
+People,Top 10 persistent by residents,s_3731,Residents within 5 km (per site),200280.54521926492,200280.54521926492,"200,281",0.0,1.0,True
+People,Top 10 persistent by residents,m_62,Residents within 5 km (per site),193661.35989823192,193661.35989823192,"193,661",0.0,1.0,True
+People,Top 10 persistent by residents,s_3643,Residents within 5 km (per site),173188.21802771837,173188.21802771837,"173,188",0.0,1.0,True
+People,Top 10 persistent by residents,s_3749,Residents within 5 km (per site),160122.54381217062,160122.54381217062,"160,123",0.0,1.0,True
+Methods,Satellite vs official table,2021 satellite,Flare Volume (bcm),6.540477298119296,6.5404772981192965,6.54,8.881784197001252e-16,0.001,True
+Methods,Satellite vs official table,2021 official,Official Volume (bcm),7.1522407973814,7.1522407973814,7.15,0.0,0.001,True
+Methods,Satellite vs official table,2021 difference,Satellite − Official (bcm),-0.6117634992621044,-0.6117634992621035,-0.61,8.881784197001252e-16,0.001,True
+Methods,Satellite vs official table,2021 ratio,Satellite ÷ Official,0.9144654778001763,0.9144654778001764,0.914,1.1102230246251565e-16,1e-06,True
+Methods,Satellite vs official table,2022 satellite,Flare Volume (bcm),5.16380758355085,5.16380758355085,5.16,0.0,0.001,True
+Methods,Satellite vs official table,2022 official,Official Volume (bcm),5.3360832069972,5.3360832069972,5.34,0.0,0.001,True
+Methods,Satellite vs official table,2022 difference,Satellite − Official (bcm),-0.1722756234463505,-0.1722756234463505,-0.17,0.0,0.001,True
+Methods,Satellite vs official table,2022 ratio,Satellite ÷ Official,0.9677149668092796,0.9677149668092796,0.968,0.0,1e-06,True
+Methods,Satellite vs official table,2023 satellite,Flare Volume (bcm),5.0998632560206065,5.099863256020605,5.10,1.7763568394002505e-15,0.001,True
+Methods,Satellite vs official table,2023 official,Official Volume (bcm),5.1968775891116,5.1968775891116,5.20,0.0,0.001,True
+Methods,Satellite vs official table,2023 difference,Satellite − Official (bcm),-0.09701433309099361,-0.09701433309099539,-0.10,1.7763568394002505e-15,0.001,True
+Methods,Satellite vs official table,2023 ratio,Satellite ÷ Official,0.9813321881403834,0.981332188140383,0.981,3.3306690738754696e-16,1e-06,True
+Methods,Satellite vs official table,2024 satellite,Flare Volume (bcm),6.11023920784448,6.110239207844479,6.11,8.881784197001252e-16,0.001,True
+Methods,Satellite vs official table,2024 official,Official Volume (bcm),5.4619515901342,5.4619515901342,5.46,0.0,0.001,True
+Methods,Satellite vs official table,2024 difference,Satellite − Official (bcm),0.6482876177102801,0.6482876177102792,+0.65,8.881784197001252e-16,0.001,True
+Methods,Satellite vs official table,2024 ratio,Satellite ÷ Official,1.1186915715037218,1.1186915715037216,1.119,2.220446049250313e-16,1e-06,True
+Methods,Satellite vs official table,2025 satellite,Flare Volume (bcm),6.60080617732163,6.60080617732163,6.60,0.0,0.001,True
+Methods,Satellite vs official table,2025 official,Official Volume (bcm),5.773805021739999,5.773805021739999,5.77,0.0,0.001,True
+Methods,Satellite vs official table,2025 difference,Satellite − Official (bcm),0.8270011555816303,0.8270011555816303,+0.83,0.0,0.001,True
+Methods,Satellite vs official table,2025 ratio,Satellite ÷ Official,1.1432333015174116,1.1432333015174116,1.143,0.0,1e-06,True
+Methods,Validation results,recompute n pass (text),phase2b_recompute_comparison.csv,68,68,"recompute (DuckDB, shapely): 68 / 68",0.0,0.0,True
+Methods,Validation results,model checks n pass (text),phase3_validation.csv (built from),340,340,Python: 340 / 340 pass,0.0,0.0,True
+Methods,Amendments,A1: 203.9 billion scf (text),official_volumes.csv 2025 value,203.9,203.9,203.9,0.0,1e-09,True
+Methods,Known data issues,K1: 467 km (text),phase2b_flag_kaduna.json,467,467,467 km,0.0,0.0,True
+Methods,Known data issues,K2: 33 sites (text),phase2b_flag_offshore_in_polygon.csv rows,33,33,33,0.0,0.0,True

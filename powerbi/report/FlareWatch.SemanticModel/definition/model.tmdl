@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DataFolder","fact_site_year","dim_site","dim_year","dim_operator","dim_state","param_assumptions","population_groups"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table fact_site_year
+ref table dim_site
+ref table dim_year
+ref table dim_operator
+ref table dim_state
+ref table param_assumptions
+ref table population_groups
+ref table _Measures
+ref table 'Persistence Rule'
+
+ref cultureInfo en-US
+

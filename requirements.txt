@@ -1,0 +1,9 @@
+pandas
+openpyxl
+pytest
+geopandas
+rasterio
+shapely
+pyproj
+pyarrow
+duckdb

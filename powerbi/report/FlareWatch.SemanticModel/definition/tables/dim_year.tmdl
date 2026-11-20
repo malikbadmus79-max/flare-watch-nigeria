@@ -1,0 +1,59 @@
+table dim_year
+	lineageTag: 6ad3433e-544e-403c-9a71-a2297b0ea838
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 123368f0-7abf-41b3-9a95-235ca8e12352
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_recent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1c6ecd6e-a6c6-4296-8377-7f5f11c577ac
+		summarizeBy: none
+		sourceColumn: is_recent
+
+		annotation SummarizationSetBy = Automatic
+
+	column official_bcm
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 630469b6-002a-47bb-a927-f1222c65ba47
+		summarizeBy: none
+		sourceColumn: official_bcm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column official_source
+		dataType: string
+		lineageTag: 200f80e3-8c1b-4545-9eda-4f882ca78071
+		summarizeBy: none
+		sourceColumn: official_source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True for satellite years 2012-2025; False for 2026-2030 (Amendment A3).
+	column is_actual
+		dataType: boolean
+		lineageTag: ef173c11-b8cc-49d4-8539-13f82aa84099
+		summarizeBy: none
+		sourceColumn: is_actual
+
+	partition dim_year = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_year.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"year", Int64.Type}, {"is_recent", type logical}, {"is_actual", type logical}, {"official_bcm", type number}, {"official_source", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

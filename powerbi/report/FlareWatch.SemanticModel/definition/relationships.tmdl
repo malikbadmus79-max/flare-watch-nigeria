@@ -1,0 +1,20 @@
+relationship AutoDetected_c3e48f84-fe5a-46f7-bbd9-9905873edc6a
+	fromColumn: fact_site_year.site_id
+	toColumn: dim_site.site_id
+
+relationship AutoDetected_0ef93920-f6cc-4cfa-a31b-93fffb22e037
+	fromColumn: fact_site_year.year
+	toColumn: dim_year.year
+
+relationship AutoDetected_80448c84-4bc2-458a-bb43-f34cd8381e13
+	fromColumn: dim_site.operator_clean
+	toColumn: dim_operator.operator_clean
+
+relationship AutoDetected_b7128cb4-0e4f-4933-9010-73728d183633
+	fromColumn: dim_site.state
+	toColumn: dim_state.state
+
+relationship AutoDetected_d1cdb67e-51bd-468b-821f-cf4a4ad99d00
+	fromColumn: population_groups.state
+	toColumn: dim_state.state
+

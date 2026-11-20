@@ -1,0 +1,16 @@
+parameter,value,unit,source,plan_ref,status
+bcm_to_million_m3,1000.0,million m3 per bcm,Definition,plan s3,fixed
+m3_to_ft3,35.3146667,ft3 per m3,Standard conversion,plan s3,fixed
+bcm_to_bcf,35.3147,billion ft3 per bcm,Standard conversion (rounded),plan s3,fixed
+bcm_to_mscf,35314667.0,Mscf per bcm,Standard conversion,plan s3,fixed
+mmscf_to_m3,28316.8466,m3 per MMscf,Standard conversion (1 MMscf = 10^6 ft3),plan s3,fixed
+hhv_btu_per_scf,1020.0,Btu per scf,"World Bank Global Gas Flaring Tracker (June 2026), PDF p.19 fn xx",plan s5.2,fixed
+co2e_mt_per_bcm,2.569,MtCO2e per bcm,"implied average CO2e per bcm from World Bank 2025 global totals (98% combustion efficiency): 429 MMtCO2e (World Bank Global Gas Flaring Tracker (June 2026), PDF p.19) / 167 bcm (PDF p.17)",plan s5.1,fixed
+flare_fee_low_usd_per_mscf,0.5,USD per Mscf,"Flare Gas (Prevention of Waste and Pollution) Regulations 2018, as summarised in Templars law-firm copy (not the official gazette), PDF p.7: USD0.50/Mscf where the field produces less than 10,000 barrels of oil a day; implied flare fee at regulatory rates",plan s5.3,verified (law-firm copy)
+flare_fee_high_usd_per_mscf,2.0,USD per Mscf,"Flare Gas (Prevention of Waste and Pollution) Regulations 2018, as summarised in Templars law-firm copy (not the official gazette), PDF p.7: USD2.00 per 28.317 standard cubic metres (= per Mscf) for producers of 10,000 or more barrels of oil a day; implied flare fee at regulatory rates",plan s5.3,verified (law-firm copy)
+price_low_usd_per_mmbtu,2.13,USD per MMBtu,"NMDPRA domestic base price effective 1 Apr 2025 (TheCable, https://www.thecable.ng/experts-project-reduced-gas-cost-for-gencos-as-fg-cuts-domestic-base-price-to-2-1, accessed 2026-11-20); at 2025 prices; gross value of gas flared at market prices; not net revenue",plan s5.2,fixed
+price_central_usd_per_mmbtu,3.52,USD per MMBtu,"US Henry Hub 2025 average as used in World Bank Global Gas Flaring Tracker (June 2026), PDF p.19 fn xx; at 2025 prices; gross value of gas flared at market prices; not net revenue",plan s5.2,fixed
+price_high_usd_per_mmbtu,13.4,USD per MMBtu,"Lower of the two conflicting TTF/Asia LNG 2025 figures in World Bank Global Gas Flaring Tracker (June 2026) (PDF p.8 fn iv; PDF p.19 fn xx), chosen to avoid resolving the inconsistency; at 2025 prices; gross value of gas flared at market prices; not net revenue",plan s5.2,fixed
+persistent_min_years,12.0,years of 14,Definition,plan s3,fixed
+persistent_sensitivity_low,10.0,years of 14,Definition,plan s3,fixed
+persistent_sensitivity_high,14.0,years of 14,Definition,plan s3,fixed

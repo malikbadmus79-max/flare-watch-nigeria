@@ -1,0 +1,3 @@
+column,raw_value,clean_value,rule,n_sites,n_rows
+Operator,<missing>,Unattributed,missing -> Unattributed (plan Q1),57,798
+Operator,Renaissance Africa Energy ,Renaissance Africa Energy,trim leading/trailing spaces (plan Q2),75,1050

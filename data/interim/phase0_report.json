@@ -1,0 +1,195 @@
+{
+  "sources": [
+    {
+      "file": "Flare-Volume-Estimates-by-individual-Flare-Location-2012-2025.xlsx",
+      "size_bytes": 47115914,
+      "sha256": "8b6052d23c09584d5964d6549026961b5ee8529b9b882edb4073fd6e9bc40354"
+    },
+    {
+      "file": "Flare-volume-and-intensity-estimates-2012-2025.xlsx",
+      "size_bytes": 78034,
+      "sha256": "dae0c289b3539d29c210676d5a0eea6904b10d3e9baac81c1100717c7b3aa405"
+    },
+    {
+      "file": "Global-Oil-and-Gas-Extraction-Tracker-March-2026.xlsx",
+      "size_bytes": 5393993,
+      "sha256": "10ed7bc007e47895c2f387449365c20d0a87679cb8c69be678d0cc60df4d1aa5"
+    },
+    {
+      "file": "docs/Global-Gas-FlaringTracker-June-23-2026.pdf",
+      "size_bytes": 22400713,
+      "sha256": "91b5997afe154d8efaa1f0ebe9463e224c6df8ca26c023f0f82601acda9ab6bf"
+    },
+    {
+      "file": "docs/World-Bank-s-Global-Gas-Flaring-Reduction-Partnership-Gas-Flaring-Estimates-Methodology-for-Determining-the-Gas-Flare-Volumes-from-Satellite-Data.pdf",
+      "size_bytes": 427825,
+      "sha256": "3ed93248233cbf6e48f36d2cb5c1e2d9e058bad34fb68fc6e73907082c086c9e"
+    }
+  ],
+  "site_file_columns": [
+    "id",
+    "lat",
+    "lon",
+    "Country",
+    "BCM",
+    "MMSCFD",
+    "Year",
+    "Field type",
+    "Operator",
+    "Field name",
+    "Location",
+    "Flare Level",
+    "Flaring Vol (million m3)"
+  ],
+  "site_file_columns_as_expected": true,
+  "nigeria_sites": {
+    "rows": 6664,
+    "unique_site_ids": 476,
+    "years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "rows_per_year": {
+      "2012": 476,
+      "2013": 476,
+      "2014": 476,
+      "2015": 476,
+      "2016": 476,
+      "2017": 476,
+      "2018": 476,
+      "2019": 476,
+      "2020": 476,
+      "2021": 476,
+      "2022": 476,
+      "2023": 476,
+      "2024": 476,
+      "2025": 476
+    },
+    "missing": {
+      "Operator": {
+        "rows_missing": 798,
+        "sites_missing": 57,
+        "of_which_literal_NA": 0
+      },
+      "Field name": {
+        "rows_missing": 798,
+        "sites_missing": 57,
+        "of_which_literal_NA": 0
+      },
+      "Field type": {
+        "rows_missing": 798,
+        "sites_missing": 57,
+        "of_which_literal_NA": 0
+      }
+    },
+    "counts": {
+      "Field type": {
+        "rows": {
+          "OIL": 5096,
+          "<missing>": 798,
+          "GAS": 714,
+          "LNG": 56
+        },
+        "sites": {
+          "<missing>": 57,
+          "GAS": 51,
+          "LNG": 4,
+          "OIL": 364
+        }
+      },
+      "Location": {
+        "rows": {
+          "ONSHORE": 5222,
+          "OFFSHORE": 1442
+        },
+        "sites": {
+          "OFFSHORE": 103,
+          "ONSHORE": 373
+        }
+      },
+      "Flare Level": {
+        "rows": {
+          "Small": 6120,
+          "Medium": 538,
+          "Large": 6
+        },
+        "sites": {
+          "Large": 2,
+          "Medium": 96,
+          "Small": 465
+        }
+      }
+    },
+    "sites_with_varying_attribute": {
+      "Field type": 0,
+      "Operator": 0,
+      "Field name": 0,
+      "Location": 0,
+      "Flare Level": 87,
+      "lat": 0,
+      "lon": 0
+    },
+    "sites_flaring_by_year": {
+      "2012": 237,
+      "2013": 228,
+      "2014": 241,
+      "2015": 257,
+      "2016": 265,
+      "2017": 274,
+      "2018": 329,
+      "2019": 351,
+      "2020": 360,
+      "2021": 381,
+      "2022": 370,
+      "2023": 332,
+      "2024": 305,
+      "2025": 259
+    },
+    "rows_with_zero_bcm": 2475,
+    "rows_with_missing_bcm": 0,
+    "max_abs_diff_bcm_vs_million_m3": 5.551115123125783e-17,
+    "unique_operators": 40,
+    "unique_field_names": 171,
+    "operators_with_trailing_space": [
+      "Renaissance Africa Energy "
+    ]
+  },
+  "site_vs_country": {
+    "years_compared": 14,
+    "all_within_tolerance": true,
+    "max_abs_diff_bcm": 7.105427357601002e-15,
+    "tolerance_bcm": 0.001
+  },
+  "gem_nigeria": {
+    "fields": 265,
+    "unique_unit_ids": 265,
+    "with_coordinates": 142,
+    "with_operator": 237,
+    "with_both": 139,
+    "status": {
+      "operating": 204,
+      "in-development": 33,
+      "mothballed": 23,
+      "discovered": 4,
+      "<missing>": 1
+    }
+  },
+  "name_match": {
+    "wb_unique_field_names": 171,
+    "gem_unique_base_names": 265,
+    "wb_names_matching_gem": 96,
+    "wb_names_not_matching": 75
+  }
+}

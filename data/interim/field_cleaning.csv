@@ -1,0 +1,4 @@
+column,raw_value,clean_value,rule,n_sites,n_rows
+Field name,<missing>,Unattributed field,missing -> Unattributed field (plan Q1),57,798
+Field name,*,Unattributed field,'*' -> Unattributed field (plan Q10),1,14
+Field type,<missing>,Unattributed,missing -> Unattributed (plan Q1),57,798

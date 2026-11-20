@@ -1,0 +1,428 @@
+/// Holds the model's measures. No data.
+table _Measures
+	lineageTag: 9a309e04-1970-4222-8d1f-0e32b88a2b3b
+
+	/// Sum of estimated flared volume in the current filter context. BLANK for years without satellite data (2026-2030, Amendment A3). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume (bcm)' =
+			VAR _hasActual = CALCULATE ( COUNTROWS ( dim_year ), dim_year[is_actual] = TRUE () )
+			RETURN IF ( _hasActual > 0, SUM ( fact_site_year[bcm] ) )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 61cc4d3d-c36c-4edc-b474-086678f8b1e0
+
+	/// Flare Volume (bcm) x 1,000 (param bcm_to_million_m3). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume (million m3)' = [Flare Volume (bcm)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "bcm_to_million_m3" )
+		formatString: #,##0.0
+		displayFolder: Volume
+		lineageTag: b5ee2bc4-4238-47fb-8860-fb9d22422a90
+
+	/// Flare Volume (bcm) x 35,314,667 Mscf per bcm (param bcm_to_mscf). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume (Mscf)' = [Flare Volume (bcm)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "bcm_to_mscf" )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: c0263150-3071-433a-bebe-10b2f3b2dfbd
+
+	/// Flare Volume (bcm) x 35.3147 (param bcm_to_bcf). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume (bcf)' = [Flare Volume (bcm)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "bcm_to_bcf" )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: ad0f0b10-ffb4-4475-9d67-f64bbcb7abcb
+
+	/// Flare volume ignoring site, operator, field and state filters; year filter kept. Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'National Volume (bcm)' =
+			CALCULATE (
+			    [Flare Volume (bcm)],
+			    ALLEXCEPT ( fact_site_year, dim_year )
+			)
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: ce274fa2-340c-408e-8d27-76c37b36e76d
+
+	/// Flare Volume (bcm) / National Volume (bcm) for the same years.
+	measure 'Share of National' = DIVIDE ( [Flare Volume (bcm)], [National Volume (bcm)] )
+		formatString: 0.0%
+		displayFolder: Volume
+		lineageTag: cc4959bb-54d0-423e-825d-e4a0ae3af998
+
+	/// Mean annual flared volume over 2023-2025 (is_recent) for the selection; zero years count as 0. Ignores the year filter. Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Recent Volume (bcm)' =
+			VAR _years = CALCULATE ( COUNTROWS ( dim_year ), REMOVEFILTERS ( dim_year ), dim_year[is_recent] = TRUE () )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[is_recent] = TRUE () ),
+			        _years
+			    )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 683a509c-097b-462c-8f33-a106aabbd9f3
+
+	/// Flare volume in the year in context minus the previous year. BLANK unless exactly one year is in context and both years have satellite data.
+	measure 'YoY Change (bcm)' =
+			VAR _y = SELECTEDVALUE ( dim_year[year] )
+			VAR _cur = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y )
+			VAR _prev = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y - 1 )
+			RETURN IF ( NOT ISBLANK ( _y ) && NOT ISBLANK ( _cur ) && NOT ISBLANK ( _prev ), _cur - _prev )
+		formatString: +#,##0.00;-#,##0.00;0.00
+		displayFolder: Volume
+		lineageTag: 0e5c5762-82cb-4945-a2e7-5669b69c45ee
+
+	/// YoY Change (bcm) / previous year's flare volume.
+	measure 'YoY Change (%)' =
+			VAR _y = SELECTEDVALUE ( dim_year[year] )
+			VAR _prev = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y - 1 )
+			RETURN DIVIDE ( [YoY Change (bcm)], _prev )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Volume
+		lineageTag: 0dda94e4-f2c6-4c82-be03-74476ee7f55d
+
+	/// Flare volume from sites with no recorded operator ("Unattributed"). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Unattributed Volume (bcm)' = CALCULATE ( [Flare Volume (bcm)], KEEPFILTERS ( dim_operator[is_unattributed] = TRUE () ) )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 7ce677fa-37dd-4d6a-b3bb-9fc6ca871e36
+
+	/// Latest actual satellite year (is_actual) in the current selection; if none is selected, the latest actual year in the data (2025).
+	measure 'Selected Year' =
+			COALESCE (
+			    CALCULATE ( MAX ( dim_year[year] ), KEEPFILTERS ( dim_year[is_actual] = TRUE () ) ),
+			    CALCULATE ( MAX ( dim_year[year] ), REMOVEFILTERS ( dim_year ), dim_year[is_actual] = TRUE () )
+			)
+		formatString: 0
+		displayFolder: Volume
+		lineageTag: 1dc24d99-076e-40a6-9c55-c88c83604a8a
+
+	/// Flare volume in [Selected Year]; other filters kept. Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume Selected Year (bcm)' =
+			VAR _y = [Selected Year]
+			RETURN CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 6f9e1760-cc9d-41c9-80c9-3286598afb57
+
+	/// (Flare volume in [Selected Year] - flare volume in 2012) / flare volume in 2012. Describes estimated change only; no statement about targets.
+	measure 'Change since 2012 (%)' =
+			VAR _base = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = 2012 )
+			RETURN DIVIDE ( [Flare Volume Selected Year (bcm)] - _base, _base )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Volume
+		lineageTag: 056ccd83-026d-4420-a9f4-7658652fb627
+
+	/// (Flare volume in [Selected Year] - flare volume in 2023) / flare volume in 2023. Describes estimated change only; no statement about targets.
+	measure 'Change since 2023 (%)' =
+			VAR _base = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = 2023 )
+			RETURN DIVIDE ( [Flare Volume Selected Year (bcm)] - _base, _base )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Volume
+		lineageTag: f836ca5d-2f5b-4019-8b97-f3ebfe8a4a10
+
+	/// Illustrative straight-line path to zero by 2030: 2025 national volume x (2030 - year) / 5, for years 2025-2030 only; BLANK otherwise. Not a forecast; no statement that Nigeria is on or off track (plan s7, Amendment A3).
+	measure 'Illustrative Path 2030 (bcm)' =
+			VAR _y = SELECTEDVALUE ( dim_year[year] )
+			VAR _start = 2025
+			VAR _end = 2030
+			VAR _base = CALCULATE ( [National Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _start )
+			RETURN IF ( _y >= _start && _y <= _end, _base * ( _end - _y ) / ( _end - _start ) )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 6c37588e-9b65-49e5-8023-ef698539dc94
+
+	/// Distinct sites with estimated flaring (bcm > 0) in the selected years. bcm = 0 means "no flaring detected".
+	measure 'Active Sites' = CALCULATE ( DISTINCTCOUNT ( fact_site_year[site_id] ), KEEPFILTERS ( fact_site_year[bcm] > 0 ) )
+		formatString: #,##0
+		displayFolder: Sites
+		lineageTag: 7046780b-1ee2-47fe-9246-e21485ebed98
+
+	/// Active Sites in [Selected Year]; other filters kept.
+	measure 'Active Sites Selected Year' =
+			VAR _y = [Selected Year]
+			RETURN CALCULATE ( [Active Sites], REMOVEFILTERS ( dim_year ), dim_year[year] = _y )
+		formatString: #,##0
+		displayFolder: Sites
+		lineageTag: 2caf1c8e-9b62-4336-b9c9-89d89078cd14
+
+	/// Sites flagged persistent under the rule chosen in the 'Persistence Rule' slicer (10, 12 or 14 of 14 years with bcm > 0); default is param persistent_min_years (12). Not affected by the year filter.
+	measure 'Persistent Sites' =
+			VAR _rule = SELECTEDVALUE ( 'Persistence Rule'[Min Years], LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "persistent_min_years" ) )
+			RETURN
+			    SWITCH (
+			        _rule,
+			        10, CALCULATE ( COUNTROWS ( dim_site ), KEEPFILTERS ( dim_site[persistent_10] = TRUE () ) ),
+			        14, CALCULATE ( COUNTROWS ( dim_site ), KEEPFILTERS ( dim_site[persistent_14] = TRUE () ) ),
+			        12, CALCULATE ( COUNTROWS ( dim_site ), KEEPFILTERS ( dim_site[persistent] = TRUE () ) )
+			    )
+		formatString: #,##0
+		displayFolder: Sites
+		lineageTag: 5032e6a0-f8cb-4b1a-ba00-f810feb6ee58
+
+	/// Sites with bcm > 0 in at least 12 of the 14 years 2012-2025 (main rule, plan s3). Not affected by the year filter or the Persistence Rule slicer.
+	measure 'Persistent Sites (12 of 14)' = CALCULATE ( COUNTROWS ( dim_site ), KEEPFILTERS ( dim_site[persistent] = TRUE () ) )
+		formatString: #,##0
+		displayFolder: Sites
+		lineageTag: 8509683d-1b2e-4fa4-a254-df673a0972af
+
+	/// Number of years 2012-2025 with bcm > 0 for the one site in context; BLANK unless exactly one site is in context. Ignores the year filter.
+	measure 'Active Years' =
+			IF (
+			    HASONEVALUE ( dim_site[site_id] ),
+			    CALCULATE (
+			        DISTINCTCOUNT ( fact_site_year[year] ),
+			        REMOVEFILTERS ( dim_year ),
+			        KEEPFILTERS ( fact_site_year[bcm] > 0 )
+			    )
+			)
+		formatString: 0
+		displayFolder: Sites
+		lineageTag: 294cc826-84b6-439c-b1f0-5091daa7b311
+
+	/// Share of national volume from the 10 largest sites in context, by flare volume; ties broken by ascending site_id.
+	measure 'Top 10 Sites Share' =
+			VAR _t =
+			    ADDCOLUMNS ( VALUES ( dim_site[site_id] ), "@v", [Flare Volume (bcm)] )
+			VAR _top = TOPN ( 10, _t, [@v], DESC, dim_site[site_id], ASC )
+			RETURN DIVIDE ( SUMX ( _top, [@v] ), [National Volume (bcm)] )
+		formatString: 0.0%
+		displayFolder: Concentration
+		lineageTag: 0ebb076d-bc73-4fb5-a66d-3cf1d3493d96
+
+	/// Share of national volume from the 10 largest fields in context (field as recorded; includes the "Unattributed field" group, as plan s9.3 sets no exclusion for fields); ties broken by ascending field name.
+	measure 'Top 10 Fields Share' =
+			VAR _t =
+			    ADDCOLUMNS ( VALUES ( dim_site[field] ), "@v", [Flare Volume (bcm)] )
+			VAR _top = TOPN ( 10, _t, [@v], DESC, dim_site[field], ASC )
+			RETURN DIVIDE ( SUMX ( _top, [@v] ), [National Volume (bcm)] )
+		formatString: 0.0%
+		displayFolder: Concentration
+		lineageTag: 303fb3e5-9392-4106-8a3f-da2ae00ae3bb
+
+	/// Share of national volume from the 10 largest operators in context (operator as recorded, 2026 release), excluding "Unattributed" from the ranking; ties broken by ascending operator name.
+	measure 'Top 10 Operators Share' =
+			VAR _t =
+			    ADDCOLUMNS (
+			        CALCULATETABLE (
+			            VALUES ( dim_operator[operator_clean] ),
+			            KEEPFILTERS ( dim_operator[is_unattributed] = FALSE () )
+			        ),
+			        "@v", [Flare Volume (bcm)]
+			    )
+			VAR _top = TOPN ( 10, _t, [@v], DESC, dim_operator[operator_clean], ASC )
+			RETURN DIVIDE ( SUMX ( _top, [@v] ), [National Volume (bcm)] )
+		formatString: 0.0%
+		displayFolder: Concentration
+		lineageTag: 0d001035-5747-4212-a37d-4bfa08b368ba
+
+	/// Flare Volume (bcm) x param co2e_mt_per_bcm (2.569): implied average CO2e per bcm from World Bank 2025 global totals (98% combustion efficiency). Global average, not Nigeria-specific.
+	measure 'CO2e (Mt)' = [Flare Volume (bcm)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "co2e_mt_per_bcm" )
+		formatString: #,##0.00
+		displayFolder: Cost
+		lineageTag: f8e0dbec-7bdc-420a-a153-3fabd3ed1a52
+
+	/// Flare Volume (Mscf) x 1,000 scf/Mscf x param hhv_btu_per_scf (1,020 Btu/scf) / 10^6.
+	measure 'Gas Energy (MMBtu)' = [Flare Volume (Mscf)] * 1000 * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "hhv_btu_per_scf" ) / 1000000
+		formatString: #,##0
+		displayFolder: Cost
+		lineageTag: 07c881c5-94cb-4d36-9384-89e25a812fe5
+
+	/// Gas Energy (MMBtu) x param price_low_usd_per_mmbtu (2.13). Gross value of gas flared at market prices, at 2025 prices; not net revenue.
+	measure 'Gas Value Low (USD)' = [Gas Energy (MMBtu)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "price_low_usd_per_mmbtu" )
+		formatString: \$#,##0
+		displayFolder: Cost
+		lineageTag: 52adb975-2afa-4189-acd9-83ecacb6de72
+
+	/// Gas Energy (MMBtu) x param price_central_usd_per_mmbtu (3.52). Gross value of gas flared at market prices, at 2025 prices; not net revenue.
+	measure 'Gas Value Central (USD)' = [Gas Energy (MMBtu)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "price_central_usd_per_mmbtu" )
+		formatString: \$#,##0
+		displayFolder: Cost
+		lineageTag: 98792fe4-ec4c-4af1-bf2c-c761d33a48cf
+
+	/// Gas Energy (MMBtu) x param price_high_usd_per_mmbtu (13.4). Gross value of gas flared at market prices, at 2025 prices; not net revenue.
+	measure 'Gas Value High (USD)' = [Gas Energy (MMBtu)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "price_high_usd_per_mmbtu" )
+		formatString: \$#,##0
+		displayFolder: Cost
+		lineageTag: da9bceb5-b60d-4bc5-adb9-88ee7c9a278f
+
+	/// Flare Volume (Mscf) x param flare_fee_low_usd_per_mscf (USD 0.50). Implied flare fee at regulatory rates (Amendment A2), applied to all satellite volume including non-routine flaring. Not an amount owed, due or unpaid; not comparable with amounts collected.
+	measure 'Implied Flare Fee Low (USD)' = [Flare Volume (Mscf)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "flare_fee_low_usd_per_mscf" )
+		formatString: \$#,##0
+		displayFolder: Cost
+		lineageTag: 1391d8a3-4a19-4fd5-94e7-4c786756fa73
+
+	/// Flare Volume (Mscf) x param flare_fee_high_usd_per_mscf (USD 2.00). Implied flare fee at regulatory rates (Amendment A2), applied to all satellite volume including non-routine flaring. Not an amount owed, due or unpaid; not comparable with amounts collected.
+	measure 'Implied Flare Fee High (USD)' = [Flare Volume (Mscf)] * LOOKUPVALUE ( param_assumptions[value], param_assumptions[parameter], "flare_fee_high_usd_per_mscf" )
+		formatString: \$#,##0
+		displayFolder: Cost
+		lineageTag: 38424e14-281f-4b65-891f-c84683cc3999
+
+	/// Residents living within 2 km of a flare site (WorldPop 2025), union of buffers so each person is counted once, from population_groups. Group from population_groups[group] (default active_2025); state from dim_state if exactly one state is selected, else all states. BLANK if several states are selected or a site or operator filter is applied (unions are precomputed per group and state only). No exposure or health claim.
+	measure 'Residents within 2 km' =
+			VAR _g = CALCULATE ( SELECTEDVALUE ( population_groups[group], "active_2025" ), REMOVEFILTERS ( dim_state ) )
+			VAR _st = IF ( ISFILTERED ( dim_state ), SELECTEDVALUE ( dim_state[state] ), "All" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _st ) && NOT ISFILTERED ( dim_site ) && NOT ISFILTERED ( dim_operator ),
+			        CALCULATE (
+			            SUM ( population_groups[pop_union] ),
+			            REMOVEFILTERS ( population_groups ),
+			            REMOVEFILTERS ( dim_state ),
+			            population_groups[group] = _g,
+			            population_groups[state] = _st,
+			            population_groups[buffer_km] = 2
+			        )
+			    )
+		formatString: #,##0
+		displayFolder: People
+		lineageTag: 6daf1c7c-2f99-4385-863c-3dbeaab6ae5a
+
+	/// As Residents within 2 km, for 5 km buffers. No exposure or health claim.
+	measure 'Residents within 5 km' =
+			VAR _g = CALCULATE ( SELECTEDVALUE ( population_groups[group], "active_2025" ), REMOVEFILTERS ( dim_state ) )
+			VAR _st = IF ( ISFILTERED ( dim_state ), SELECTEDVALUE ( dim_state[state] ), "All" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _st ) && NOT ISFILTERED ( dim_site ) && NOT ISFILTERED ( dim_operator ),
+			        CALCULATE (
+			            SUM ( population_groups[pop_union] ),
+			            REMOVEFILTERS ( population_groups ),
+			            REMOVEFILTERS ( dim_state ),
+			            population_groups[group] = _g,
+			            population_groups[state] = _st,
+			            population_groups[buffer_km] = 5
+			        )
+			    )
+		formatString: #,##0
+		displayFolder: People
+		lineageTag: 6562d79b-6319-42ad-bd10-973859388ef7
+
+	/// Residents living within 5 km of the one site in context (its own buffer; may overlap with neighbouring sites, so do not add across sites). BLANK unless exactly one site is in context. No exposure or health claim.
+	measure 'Residents within 5 km (per site)' = IF ( HASONEVALUE ( dim_site[site_id] ), SUM ( dim_site[pop_5km] ) )
+		formatString: #,##0
+		displayFolder: People
+		lineageTag: 2e5d7964-730e-4f27-a4a9-3add251a7894
+
+	/// Official national flared volume converted to bcm (2021-2024 NUPRC via BudgIT; 2025 NUPRC figure as reported in the press, Amendment A1). BLANK where none, or if any selected year has none.
+	measure 'Official Volume (bcm)' =
+			VAR _n = COUNTROWS ( dim_year )
+			VAR _k = COUNT ( dim_year[official_bcm] )
+			RETURN IF ( _n > 0 && _k = _n, SUM ( dim_year[official_bcm] ) )
+		formatString: #,##0.00
+		displayFolder: Validation
+		lineageTag: 5213e741-9009-41c5-8fe5-9f0663f37b96
+
+	/// National Volume (bcm) minus Official Volume (bcm). Reports the difference only, not its cause.
+	measure 'Satellite − Official (bcm)' =
+			VAR _off = [Official Volume (bcm)]
+			RETURN IF ( NOT ISBLANK ( _off ), [National Volume (bcm)] - _off )
+		formatString: +#,##0.00;-#,##0.00;0.00
+		displayFolder: Validation
+		lineageTag: 5e9d80bb-0f58-41e6-bc70-df39559dcb2b
+
+	/// National Volume (bcm) / Official Volume (bcm). Reports the ratio only, not its cause.
+	measure 'Satellite ÷ Official' = DIVIDE ( [National Volume (bcm)], [Official Volume (bcm)] )
+		formatString: 0.000
+		displayFolder: Validation
+		lineageTag: 52a9ebda-fb18-4338-a074-2473daf5f9e8
+
+	/// (Flare volume in [Selected Year] - flare volume in the year before) / flare volume in the year before. Describes estimated change only. Added for the page 1 redesign.
+	measure 'YoY Change Selected Year (%)' =
+			VAR _y = [Selected Year]
+			VAR _cur = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y )
+			VAR _prev = CALCULATE ( [Flare Volume (bcm)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y - 1 )
+			RETURN DIVIDE ( _cur - _prev, _prev )
+		formatString: ▲ 0.0%;▼ 0.0%;0.0%
+		displayFolder: Volume
+		lineageTag: 4f7e5dc3-4dbd-4502-a72a-f33dd4c705c7
+
+	/// CO2e (Mt) in [Selected Year]; other filters kept. Implied average CO2e per bcm from World Bank 2025 global totals (98% combustion efficiency). Added for the page 1 redesign.
+	measure 'CO2e Selected Year (Mt)' =
+			VAR _y = [Selected Year]
+			RETURN CALCULATE ( [CO2e (Mt)], REMOVEFILTERS ( dim_year ), dim_year[year] = _y )
+		formatString: #,##0.0
+		displayFolder: Cost
+		lineageTag: e8e06e0a-bab8-4d67-b772-4ec9fe4aae7f
+
+	/// Formatting helper for the 'Gas flared each year' columns (conditional colour): "#FF7A1A" for 2025, "#9C4519" for other years. Returns text; not a data value.
+	measure 'Volume Column Colour' = IF ( SELECTEDVALUE ( dim_year[year] ) = 2025, "#FF7A1A", "#9C4519" )
+		displayFolder: Volume
+		lineageTag: 9bea624d-9357-491a-adea-770b682290d4
+
+	/// Chart helper: Active Sites for 2021 (the peak year) and 2025 only, BLANK for other years. Used as an invisible second series so only those two points carry data labels.
+	measure 'Active Sites Label Points' =
+			VAR _y = SELECTEDVALUE ( dim_year[year] )
+			RETURN IF ( _y = 2021 || _y = 2025, [Active Sites] )
+		formatString: #,##0
+		displayFolder: Sites
+		lineageTag: e5754376-6eed-4d97-9e7e-b8225da97244
+
+	/// Chart helper: Flare Volume (bcm) for every year except 2025 (BLANK for 2025). Stacked with 'Flare Volume 2025 only (bcm)' so the 2025 column can have its own colour; the two always sum to Flare Volume (bcm). Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume excl 2025 (bcm)' = CALCULATE ( [Flare Volume (bcm)], KEEPFILTERS ( dim_year[year] <> 2025 ) )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: 6e01a405-b7f7-4088-a66b-ea5699204f3b
+
+	/// Chart helper: Flare Volume (bcm) for 2025 only (BLANK for other years). See 'Flare Volume excl 2025 (bcm)'. Satellite estimate (NOAA, Payne Institute / Colorado School of Mines, World Bank GFMR).
+	measure 'Flare Volume 2025 only (bcm)' = CALCULATE ( [Flare Volume (bcm)], KEEPFILTERS ( dim_year[year] = 2025 ) )
+		formatString: #,##0.00
+		displayFolder: Volume
+		lineageTag: bd7cac17-a907-4701-862a-726b35910902
+
+	/// Filter helper for the Sites page: 1 if the site in context has at least the number of active years chosen in the 'Persistence Rule' slicer (10, 12 or 14 of 14), else 0; 1 for every site when no rule is selected.
+	measure 'Site Passes Persistence Rule' =
+			VAR _rule = SELECTEDVALUE ( 'Persistence Rule'[Min Years] )
+			VAR _years = MAX ( dim_site[active_years] )
+			RETURN IF ( ISBLANK ( _rule ) || _years >= _rule, 1, 0 )
+		formatString: 0
+		displayFolder: Sites
+		lineageTag: 25f69711-a856-4135-b2ca-b80729d39416
+
+	/// Residents living within 5 km of persistent sites (WorldPop 2025), union of buffers, from population_groups with the group fixed to 'persistent' (no fallback to another group); all states, or exactly one selected state; BLANK where a state has no persistent site. No exposure or health claim.
+	measure 'Residents within 5 km of persistent sites' =
+			VAR _st = IF ( ISFILTERED ( dim_state ), SELECTEDVALUE ( dim_state[state] ), "All" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _st ) && NOT ISFILTERED ( dim_site ) && NOT ISFILTERED ( dim_operator ),
+			        CALCULATE (
+			            SUM ( population_groups[pop_union] ),
+			            REMOVEFILTERS ( population_groups ),
+			            REMOVEFILTERS ( dim_state ),
+			            population_groups[group] = "persistent",
+			            population_groups[state] = _st,
+			            population_groups[buffer_km] = 5
+			        )
+			    )
+		formatString: #,##0
+		displayFolder: People
+		lineageTag: 01fd64aa-c70b-4765-b5be-96d18d37ca3a
+
+	/// Display helper for the Cost page assumptions table: a short source label (8 words or fewer) for the parameter in context. Full sources are in param_assumptions[source] and on the Methods page.
+	measure 'Assumption Source (short)' =
+			SWITCH (
+			    SELECTEDVALUE ( param_assumptions[parameter] ),
+			    "bcm_to_million_m3", "Definition",
+			    "m3_to_ft3", "Standard conversion",
+			    "bcm_to_bcf", "Standard conversion (rounded)",
+			    "bcm_to_mscf", "Standard conversion",
+			    "mmscf_to_m3", "Standard conversion",
+			    "hhv_btu_per_scf", "World Bank Tracker 2026, p.19",
+			    "co2e_mt_per_bcm", "World Bank Tracker 2026, pp.17, 19",
+			    "flare_fee_low_usd_per_mscf", "2018 Regulations, law-firm copy, p.7",
+			    "flare_fee_high_usd_per_mscf", "2018 Regulations, law-firm copy, p.7",
+			    "price_low_usd_per_mmbtu", "NMDPRA base price, Apr 2025 (TheCable)",
+			    "price_central_usd_per_mmbtu", "Henry Hub 2025, World Bank Tracker",
+			    "price_high_usd_per_mmbtu", "TTF/Asia LNG 2025, World Bank Tracker",
+			    "persistent_min_years", "Definition (plan s3)",
+			    "persistent_sensitivity_low", "Definition (plan s3)",
+			    "persistent_sensitivity_high", "Definition (plan s3)",
+			    SELECTEDVALUE ( param_assumptions[source] )
+			)
+		displayFolder: Cost
+		lineageTag: 7eb122f7-c240-421a-bc05-4785834fef95
+
+	column _
+		isHidden
+		lineageTag: 9c89ca7e-bc10-4f01-afe4-a8d8d26a6222
+		isNameInferred
+		sourceColumn: [_]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("_", BLANK())
+

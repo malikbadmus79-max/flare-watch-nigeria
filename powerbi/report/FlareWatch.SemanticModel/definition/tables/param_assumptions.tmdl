@@ -1,0 +1,66 @@
+table param_assumptions
+	lineageTag: f43efa61-41f8-4f4d-8d5d-c48f25aa7b6d
+
+	column parameter
+		dataType: string
+		lineageTag: 397aa4fd-37fc-47db-bf05-73d4c5a4243b
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: 4a280594-4128-4fe5-a7f9-0c36619cf516
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unit
+		dataType: string
+		lineageTag: 1d797013-be37-4eb4-ad28-82ef75c48e65
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: a15f468d-baac-4bd2-a1f1-4f9675c052f6
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan_ref
+		dataType: string
+		isHidden
+		lineageTag: 6cead1a0-9e4b-457e-a665-7a901a9f3449
+		summarizeBy: none
+		sourceColumn: plan_ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: c507fd10-5817-4e68-8d25-57ba05662d9f
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition param_assumptions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "param_assumptions.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"parameter", type text}, {"value", type number}, {"unit", type text}, {"source", type text}, {"plan_ref", type text}, {"status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

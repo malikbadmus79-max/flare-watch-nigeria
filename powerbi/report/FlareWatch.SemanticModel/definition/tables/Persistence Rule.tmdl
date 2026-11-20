@@ -1,0 +1,18 @@
+/// Slicer for the persistence rule used by [Persistent Sites] (plan s3, s9.3). Not related to other tables.
+table 'Persistence Rule'
+	lineageTag: 53bdb097-a0b1-41df-b228-55001fe7dfd3
+
+	column Rule
+		lineageTag: 0b97b00f-144b-4989-8a0e-1248d8eb50d5
+		isNameInferred
+		sourceColumn: [Rule]
+
+	column 'Min Years'
+		lineageTag: bebd9243-82f3-4d6f-b7d5-3f57f2f8c3b6
+		isNameInferred
+		sourceColumn: [Min Years]
+
+	partition 'Persistence Rule' = calculated
+		mode: import
+		source = DATATABLE("Rule", STRING, "Min Years", INTEGER, {{"12 of 14 years (main)", 12}, {"10 of 14 years", 10}, {"14 of 14 years", 14}})
+

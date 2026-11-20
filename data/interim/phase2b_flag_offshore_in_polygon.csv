@@ -1,0 +1,34 @@
+site_id,lat,lon,adm1_polygon,operator_clean,field,active_years,state
+s_3610,5.410307712,5.318397234,Delta,Renaissance Africa Energy,Forcados Yokri,14,Offshore
+s_3618,5.710005344,5.336155185,Delta,NEPL,Utonana,13,Offshore
+s_3622,5.36096693,5.324711083,Delta,Renaissance Africa Energy,Forcados Yokri,14,Offshore
+s_3624,5.414711522,5.322738277,Delta,Renaissance Africa Energy,Forcados Yokri,14,Offshore
+s_3643,4.425126375,7.152957504,Rivers,Nigeria LNG,NLNG,14,Offshore
+s_3671,5.43180766,5.26785711,Delta,Renaissance Africa Energy,Forcados Yokri,14,Offshore
+s_3672,5.506307232,5.187508049,Delta,Renaissance Africa Energy,Escravos Beach,4,Offshore
+s_3766,4.414189893,7.140095189,Rivers,Nigeria LNG,NLNG,14,Offshore
+s_3773,5.497099131,5.193366698,Delta,Renaissance Africa Energy,Escravos Beach,6,Offshore
+s_3799,4.433630568,6.324618552,Bayelsa,Aiteo Eastern E&P Company,Nembe Creek,14,Offshore
+s_3847,4.560567973,6.710335375,Rivers,Newcross EP,Ekulama,14,Offshore
+s_3848,4.625620037,7.023969698,Rivers,NNPC Limited,Alakiri,12,Offshore
+s_3856,4.626400979,6.815130993,Rivers,SEPLAT Energy,Idama,13,Offshore
+s_3919,5.471628259,5.211393779,Delta,Renaissance Africa Energy,Forcados Yokri,5,Offshore
+s_3960,5.608779984,5.415861559,Delta,NEPL,Egwa,10,Offshore
+s_3961,4.55697714,7.003356692,Rivers,NNPC Limited,Cawthorne Channel,14,Offshore
+s_3984,4.530226376,6.818542592,Rivers,Newcross EP,Awoba (OML 24),13,Offshore
+s_3991,4.516719355,7.757962704,Akwa Ibom,Sterling Global,Utapate,3,Offshore
+s_3998a,5.581686438,5.223788185,Delta,Renaissance Africa Energy,Escravos Beach,7,Offshore
+s_3998b,5.589587377,5.222446514,Delta,Renaissance Africa Energy,Saghara,13,Offshore
+s_4007,4.468523445,6.841086136,Rivers,Unattributed,Unattributed field,9,Offshore
+s_4020,5.514751383,5.182599931,Delta,Renaissance Africa Energy,Escravos Beach,9,Offshore
+s_4081,4.580821532,6.929565757,Rivers,TotalEnergies,Ubeta,5,Offshore
+s_4086,4.618942072,7.012238347,Rivers,NNPC Limited,Alakiri,6,Offshore
+s_4087a,5.483819186,5.210852523,Delta,Renaissance Africa Energy,Forcados Yokri,4,Offshore
+s_4087b,5.491110832,5.200323331,Delta,Renaissance Africa Energy,Afremo,5,Offshore
+s_4089,4.457950171,7.029964697,Rivers,NNPC Limited,Akaso,3,Offshore
+s_4110,5.628169059,5.454656595,Delta,NEPL,Egwa,6,Offshore
+s_4159b,4.534105037,7.021786502,Rivers,NNPC Limited,Akaso,13,Offshore
+s_4168,4.647524359,7.020508094,Rivers,NNPC Limited,Alakiri,12,Offshore
+s_4181,4.585572605,7.004050275,Rivers,NNPC Limited,Cawthorne Channel,13,Offshore
+s_4195a,4.589985334,6.840640027,Rivers,SEPLAT Energy,Idama,11,Offshore
+s_4195b,4.597684238,6.842222394,Rivers,SEPLAT Energy,Idama,9,Offshore
